@@ -1,0 +1,424 @@
+/* ═══════════════════════════════════════════════════════
+   ExamAce — Visual Redesign Override
+   Transforms the existing React app's aesthetics while
+   keeping all functionality 100% intact.
+═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Override shadcn CSS vars */
+  --background: 30 15% 97%;          /* warm off-white */
+  --foreground: 220 25% 12%;         /* near-black */
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 25% 12%;
+  --primary: 37 65% 53%;             /* warm gold */
+  --primary-foreground: 220 25% 10%;
+  --secondary: 30 20% 94%;
+  --secondary-foreground: 220 20% 25%;
+  --muted: 30 15% 93%;
+  --muted-foreground: 220 10% 50%;
+  --accent: 30 25% 90%;
+  --accent-foreground: 220 20% 20%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 160 60% 35%;
+  --success-foreground: 0 0% 100%;
+  --border: 30 15% 88%;
+  --input: 30 15% 88%;
+  --ring: 37 65% 53%;
+  --radius: 0.875rem;
+
+  /* Custom vars */
+  --gold: #c9a84c;
+  --gold-dark: #9b7a2e;
+  --gold-pale: #f5ecda;
+  --ink: #1a1a2e;
+  --teal: #2a9d8f;
+  --warm-bg: #f7f3ed;
+  --warm-border: #e8e0d2;
+  --shadow-warm: 0 2px 8px rgba(26, 20, 10, 0.08), 0 1px 3px rgba(26, 20, 10, 0.05);
+  --shadow-warm-md: 0 4px 16px rgba(26, 20, 10, 0.1), 0 2px 6px rgba(26, 20, 10, 0.06);
+  --shadow-warm-lg: 0 8px 32px rgba(26, 20, 10, 0.12), 0 4px 12px rgba(26, 20, 10, 0.07);
+}
+
+/* ── BASE TYPOGRAPHY ── */
+body, html {
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif !important;
+  background-color: var(--warm-bg) !important;
+  color: var(--ink) !important;
+}
+
+/* Fraunces for display headings */
+h1, h2, h3,
+.text-3xl, .text-4xl, .text-5xl, .text-6xl,
+[class*="text-2xl"][class*="font-bold"],
+[class*="font-bold"][class*="text-3xl"] {
+  font-family: 'Fraunces', Georgia, serif !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 400 !important;
+}
+
+/* ── BACKGROUNDS ── */
+.min-h-screen.bg-gray-50,
+.min-h-screen.bg-gradient-to-br,
+.min-h-screen.bg-gradient-to-b,
+[class*="min-h-screen"][class*="bg-"] {
+  background-color: var(--warm-bg) !important;
+  background-image: none !important;
+}
+
+body { background-color: var(--warm-bg) !important; }
+
+/* ── TOP NAV ── */
+.border-b.bg-background\/95,
+.sticky.top-0.z-50.border-b,
+[class*="sticky"][class*="top-0"][class*="border-b"] {
+  background-color: rgba(247, 243, 237, 0.95) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid var(--warm-border) !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04) !important;
+}
+
+/* Logo gradient text */
+.bg-gradient-to-r.from-primary.to-primary\/60.bg-clip-text.text-transparent {
+  background: linear-gradient(135deg, var(--gold) 0%, #9b7a2e 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  font-family: 'Fraunces', serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ── CARDS ── */
+.bg-white.rounded-xl,
+.bg-white.rounded-2xl,
+[class*="bg-white"][class*="rounded"],
+.bg-card,
+[class*="rounded-xl"][class*="shadow"],
+[class*="rounded-2xl"][class*="shadow"] {
+  background: #ffffff !important;
+  border: 1px solid var(--warm-border) !important;
+  box-shadow: var(--shadow-warm) !important;
+  border-radius: 1rem !important;
+}
+
+.bg-white.rounded-xl:hover,
+.bg-white.rounded-2xl:hover,
+[class*="rounded-xl"][class*="shadow"]:hover,
+[class*="rounded-2xl"][class*="shadow"]:hover {
+  box-shadow: var(--shadow-warm-md) !important;
+  border-color: rgba(201, 168, 76, 0.3) !important;
+}
+
+/* ── BUTTONS — Primary ── */
+.bg-blue-600,
+.bg-primary,
+[class*="bg-blue-600"],
+button[class*="bg-blue-600"],
+button[class*="bg-primary"],
+a[class*="bg-blue-600"],
+a[class*="bg-primary"] {
+  background-color: var(--gold) !important;
+  color: #1a1207 !important;
+  box-shadow: 0 1px 3px rgba(201,168,76,0.3) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.bg-blue-600:hover,
+.bg-primary:hover,
+button[class*="bg-blue-600"]:hover,
+button[class*="bg-primary"]:hover {
+  background-color: #b8943e !important;
+  box-shadow: 0 2px 8px rgba(201,168,76,0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.bg-blue-600:active,
+.bg-primary:active,
+button[class*="bg-blue-600"]:active {
+  transform: scale(0.97) !important;
+}
+
+/* hover:bg-primary-80 / hover:bg-blue-600/90 */
+.hover\:bg-primary\/80:hover,
+.hover\:bg-primary\/90:hover,
+.hover\:bg-blue-600:hover {
+  background-color: #b8943e !important;
+}
+
+/* ── BUTTONS — Secondary / Ghost ── */
+.bg-gray-100,
+button[class*="bg-gray-100"] {
+  background-color: var(--warm-bg) !important;
+  border: 1px solid var(--warm-border) !important;
+  color: var(--ink) !important;
+}
+
+.bg-gray-100:hover,
+button[class*="bg-gray-100"]:hover {
+  background-color: var(--gold-pale) !important;
+  border-color: rgba(201,168,76,0.4) !important;
+}
+
+/* ── INDIGO GRADIENT BUTTONS (Adaptive quiz CTA) ── */
+.bg-gradient-to-r.from-indigo-600.to-purple-600 {
+  background: linear-gradient(135deg, var(--gold) 0%, #c47a1a 100%) !important;
+  color: #1a1207 !important;
+}
+
+/* ── QUIZ OPTION BUTTONS ── */
+button[class*="border"][class*="rounded-xl"]:not([class*="bg-blue-600"]):not([class*="bg-primary"]):not([class*="bg-gray-100"]),
+button.cursor-pointer.hover\:border-primary\/50 {
+  background: #fff !important;
+  border: 1.5px solid var(--warm-border) !important;
+  border-radius: 0.875rem !important;
+  transition: all 0.15s ease !important;
+  color: var(--ink) !important;
+}
+
+button[class*="border"][class*="rounded-xl"]:not([class*="bg-blue-600"]):not([class*="bg-primary"]):not([class*="bg-gray-100"]):hover {
+  border-color: var(--gold) !important;
+  background: var(--gold-pale) !important;
+}
+
+/* Correct answer */
+[class*="border-green"],
+[class*="bg-green-500"] {
+  border-color: #2a9d8f !important;
+  background-color: rgba(42,157,143,0.08) !important;
+  color: #1a5c55 !important;
+}
+
+/* Wrong answer */
+[class*="border-destructive"],
+[class*="bg-destructive\/"] {
+  background-color: rgba(220,38,38,0.06) !important;
+}
+
+/* ── PROGRESS BAR ── */
+.bg-primary.transition-all,
+[class*="bg-primary"][class*="transition"],
+.h-full.w-full.flex-1.bg-primary {
+  background: linear-gradient(90deg, var(--gold) 0%, #c47a1a 100%) !important;
+  border-radius: 99px !important;
+}
+
+[class*="bg-primary\/10"] { background-color: rgba(201,168,76,0.1) !important; }
+[class*="text-primary"] { color: var(--gold-dark) !important; }
+[class*="border-primary"] { border-color: var(--gold) !important; }
+
+/* ── SCORE / STAT NUMBERS ── */
+.text-3xl.md\:text-4xl.font-bold,
+.text-4xl.font-bold,
+.text-5xl.font-bold,
+.text-6xl.font-bold {
+  font-family: 'Fraunces', serif !important;
+  font-weight: 300 !important;
+  color: var(--ink) !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ── INPUT FIELDS ── */
+input[class*="border"][class*="rounded"],
+input[class*="border-gray"],
+textarea[class*="border"],
+select[class*="border"] {
+  background: #fff !important;
+  border: 1.5px solid var(--warm-border) !important;
+  border-radius: 0.75rem !important;
+  color: var(--ink) !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--gold) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15) !important;
+}
+
+/* ── BADGES & TAGS ── */
+[class*="bg-gray-100"][class*="text-gray"],
+.text-xs.bg-gray-100.text-gray-500,
+[class*="rounded-full"][class*="bg-gray-100"] {
+  background: var(--gold-pale) !important;
+  color: var(--gold-dark) !important;
+  border: 1px solid rgba(201,168,76,0.25) !important;
+}
+
+[class*="bg-green-500\/10"][class*="text-green-6"] {
+  background: rgba(42,157,143,0.1) !important;
+  color: #1a6b61 !important;
+  border-radius: 6px !important;
+}
+
+/* ── NOTES PAGE ── */
+.bg-blue-50,
+.dark\:bg-blue-950\/20 {
+  background-color: var(--gold-pale) !important;
+  border-color: rgba(201,168,76,0.25) !important;
+}
+
+/* ── AMBER ALERTS ── */
+[class*="bg-amber-50"][class*="border-amber"] {
+  background-color: rgba(250,236,218,0.8) !important;
+  border-color: rgba(201,168,76,0.35) !important;
+  color: #7a5a20 !important;
+}
+
+/* ── SIDEBAR / BOTTOM NAV ── */
+.border-t.border-gray-100.bg-gray-50\/50,
+[class*="border-t"][class*="bg-gray-50"] {
+  background-color: rgba(247,243,237,0.97) !important;
+  border-top: 1px solid var(--warm-border) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Active nav item */
+[class*="bg-primary\/10"][class*="text-primary"],
+[class*="text-primary"][class*="bg-primary"] {
+  background-color: rgba(201,168,76,0.12) !important;
+  color: var(--gold-dark) !important;
+}
+
+/* ── SUBJECT / TOPIC SELECTION CARDS ── */
+[class*="bg-white"][class*="rounded-xl"][class*="text-center"][class*="shadow"] {
+  background: #fff !important;
+  border: 1px solid var(--warm-border) !important;
+  box-shadow: var(--shadow-warm) !important;
+  transition: all 0.2s ease !important;
+}
+
+[class*="bg-white"][class*="rounded-xl"][class*="text-center"][class*="shadow"]:hover {
+  border-color: rgba(201,168,76,0.4) !important;
+  box-shadow: var(--shadow-warm-md) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Border-2 border-blue-500 = selected subject */
+.border-2.border-blue-500 {
+  border: 2px solid var(--gold) !important;
+  box-shadow: 0 0 0 4px rgba(201,168,76,0.12) !important;
+}
+
+/* Selected badge (absolute positioned) */
+.absolute.-top-2.right-3.bg-blue-600 {
+  background-color: var(--gold) !important;
+  color: #1a1207 !important;
+}
+
+/* ── STICKY QUIZ HEADER ── */
+.sticky.top-0[class*="bg-gradient"] {
+  background: rgba(247,243,237,0.97) !important;
+  background-image: none !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--warm-border) !important;
+}
+
+/* ── BACK BUTTON ── */
+.p-2.rounded-full.bg-white.shadow-md {
+  background: #fff !important;
+  border: 1px solid var(--warm-border) !important;
+  box-shadow: var(--shadow-warm) !important;
+}
+
+/* ── TEXT COLORS ── */
+.text-gray-900 { color: var(--ink) !important; }
+.text-gray-800 { color: #1e1e30 !important; }
+.text-gray-700 { color: #2c2c40 !important; }
+.text-gray-600 { color: #4a4a60 !important; }
+.text-gray-500 { color: #6a6a80 !important; }
+.text-gray-400 { color: #8a8a9a !important; }
+.text-blue-600, .text-blue-700 { color: var(--gold-dark) !important; }
+.text-blue-500 { color: var(--gold) !important; }
+.text-indigo-600 { color: var(--gold-dark) !important; }
+
+/* Hover text states */
+.hover\:text-primary:hover,
+.group-hover\:text-indigo-600:hover { color: var(--gold-dark) !important; }
+
+/* ── SCORE RESULT SCREEN ── */
+[class*="min-h-screen"][class*="flex"][class*="flex-col"][class*="items-center"] .text-6xl,
+[class*="min-h-screen"][class*="flex"][class*="flex-col"][class*="items-center"] .text-5xl {
+  font-family: 'Fraunces', serif !important;
+  font-weight: 300 !important;
+  color: var(--gold-dark) !important;
+}
+
+/* ── RADIO / CHECKBOX ── */
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  accent-color: var(--gold) !important;
+}
+
+/* ── SCROLLBAR (webkit) ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.45); }
+
+/* ── LOADING / SKELETON ── */
+.animate-pulse { background-color: var(--gold-pale) !important; }
+
+/* ── MODAL OVERLAY ── */
+.fixed.inset-0.z-50.flex.items-center.justify-center {
+  background-color: rgba(26,20,10,0.6) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* ── COACH PAGE EMPTY STATE ── */
+.text-center.py-16.bg-white.rounded-2xl.shadow-md {
+  background: #fff !important;
+  border: 1px solid var(--warm-border) !important;
+  box-shadow: var(--shadow-warm) !important;
+}
+
+/* ── SEPARATOR ── */
+hr, [class*="border-gray-100"], [class*="border-gray-200"] {
+  border-color: var(--warm-border) !important;
+}
+
+/* ── MICRO ANIMATIONS ── */
+button, a[class*="rounded"] {
+  transition: all 0.15s ease !important;
+}
+
+/* ── DARK MODE (preserve existing dark styles but warm them) ── */
+.dark {
+  --background: 220 20% 9%;
+  --foreground: 30 15% 90%;
+  --card: 220 20% 12%;
+  --border: 220 15% 18%;
+  --muted: 220 15% 16%;
+  --muted-foreground: 30 10% 55%;
+  --primary: 37 55% 60%;
+  --primary-foreground: 220 25% 8%;
+}
+
+/* ── REMOVE GAP BELOW TOP NAV ── */
+/* The sticky nav bar + beta banner stack — ensure no extra space leaks */
+.border-b.bg-background\/95 + *,
+[class*="sticky"][class*="top-0"][class*="border-b"] + * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Remove any inherited margin on the main content wrapper after the header */
+header + main,
+header + div,
+nav + main,
+nav + div {
+  margin-top: 0 !important;
+}
+
+/* Ensure the beta banner itself has no bottom margin/padding leaking into content */
+[style*="borderBottom"][style*="backgroundColor"][style*="textAlign:center"] {
+  margin-bottom: 0 !important;
+  padding-bottom: 7px !important;
+}
